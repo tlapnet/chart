@@ -1,0 +1,54 @@
+{var $useCategoryAxisRenderer => false}
+
+<div id="{$chartId}" style="width: {!$width}; height: {!$height};"></div>
+
+<script type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.highlighter.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+	jQuery(document).ready(function() {
+		$.jqplot.sprintf.thousandsSeparator = ' ';
+		var data = [];
+		var serie = null;
+		var series = [];
+		
+		{foreach $series as $serie}
+			serie = [];
+			
+			{foreach $serie->getSegments() as $segment}
+				{var $x => $segment->getX()}
+				{if !$useCategoryAxisRenderer && !is_numeric($x)}
+					{var $useCategoryAxisRenderer => true}
+				{/if}
+
+				serie.push([{$x}, {$segment->getY()}]);
+			{/foreach}
+				
+			data.push(serie);
+			series.push({ color: {$serie->getColor()}, label: {$serie->getTitle()} });
+			{? if($serie->getTitle()) $legend = true}
+		{/foreach}
+		{default $legend => false}
+		
+		jQuery.jqplot({$chartId}, data, {
+			axes: {
+				xaxis: {
+					{if $useCategoryAxisRenderer}renderer: jQuery.jqplot.CategoryAxisRenderer{/if}
+				}
+			},
+			highlighter: {
+				show: true,
+				sizeAdjust: 7.5
+			},
+			series: series
+			{if $legend}
+			,legend: {
+				show: true,
+				location: 'ne'
+			}
+			{/if}
+		});
+	});
+//]]>
+</script>
+<script n:if="$useCategoryAxisRenderer" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>

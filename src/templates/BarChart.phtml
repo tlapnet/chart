@@ -1,0 +1,88 @@
+<div id="{$chartId}" style="width: {!$width}; height: {!$height};"></div>
+
+<style type="text/css">
+	span.bar-chart-sum{
+	    font-size: 12px;
+	}
+</style>
+
+<script type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.pointLabels.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+
+	jQuery(document).ready(function() {
+		$.jqplot.sprintf.thousandsSeparator = ' ';
+		var data = [];
+		var serie = null;
+		var series = [];
+		var ticks = [];
+		
+		{foreach $series as $serie}
+			{var $isFirstSerie = $iterator->isFirst()}
+			serie = [];
+			
+			{foreach $serie->getSegments() as $segment}
+				{if $isStacked}
+					serie.push({$segment->getValue()});
+					
+					{if $isFirstSerie}
+						ticks.push({$segment->getTitle()});
+					{/if}
+				{else}
+					serie.push([{$segment->getTitle()}, {$segment->getValue()}]);
+				{/if}
+			{/foreach}
+				
+			data.push(serie);
+			{if $isStacked && $showStackSum}
+				{var $labels => json_encode($serie->getPointLabels())}
+				{if $serie->isSumSerie()}
+					{if isset($sumFormatCallback)}
+						{var $labels => json_encode(array_map($sumFormatCallback,$serie->getPointLabels()))}
+					{/if}
+					series.push({ label: {$serie->getTitle()}, pointLabels:{ labels: {!$labels}}, ypadding: 25, show: false});
+				{else}
+					series.push({ label: {$serie->getTitle()}, pointLabels:{ labels: {!$labels}, ypadding: -20}});
+				{/if}
+			{else}
+				series.push({ label: {$serie->getTitle()} });
+			{/if}
+
+		{/foreach}
+		
+		jQuery.jqplot({$chartId}, data, {
+			{if $isStacked}stackSeries: true,{/if}
+			seriesDefaults: {
+				renderer: jQuery.jqplot.BarRenderer,
+				rendererOptions: {
+					fillToZero: true
+				},
+				pointLabels: {
+					show: true,
+					hideZeros: true,
+					escapeHTML: false,
+				}
+
+			},
+			axes: {
+				xaxis: {
+					{if $isStacked}ticks: ticks,{/if}
+					renderer: jQuery.jqplot.CategoryAxisRenderer
+				},
+				yaxis: {
+					tickOptions: {
+						formatString: "%'" + {$decimals} + 'i' + {$valueSuffix}
+					}
+				}
+			},
+			series: series,
+			legend: {
+				show: true,
+				placement: 'outsideGrid'
+			}
+		});
+	});
+//]]>
+</script>
