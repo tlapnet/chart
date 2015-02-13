@@ -3,7 +3,7 @@
 namespace Tlapnet\Nette\Chart;
 
 
-class BaseLineChart extends BaseChart
+abstract class BaseLineChart extends BaseChart
 {
 
 
