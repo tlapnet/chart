@@ -4,9 +4,12 @@ namespace Tlapnet\Nette\Chart;
 
 
 
-abstract class BaseChart extends \Tlapnet\Nette\Control\BaseJsControl
+abstract class BaseChart extends \Nette\Application\UI\Control
 {
-	
+
+	/** @var string CSS value */
+	private static $rendersCount = 0;
+
 	/** @var array */
 	protected $series = array();
 	
@@ -15,8 +18,7 @@ abstract class BaseChart extends \Tlapnet\Nette\Control\BaseJsControl
 	
 	/** @var string CSS value */
 	private $height = 'auto';
-	
-	
+
 	
 	/*
 	 * Nette control
@@ -24,17 +26,32 @@ abstract class BaseChart extends \Tlapnet\Nette\Control\BaseJsControl
 	public function render()
 	{
 		$this->beforeRender();
-		
 
 		$t = $this->getTemplate();
 		$t->setFile($this->getTemplateFile());
 
 		$t->series = $this->series;
-		$t->chartId = $this->getUniqueControlId();
+		$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
 		$t->width = $this->width;
 		$t->height = $this->height;
 		
 		$t->render();
-		$this->afterRender();
+	}
+
+
+	private function getTemplateFile()
+	{
+		$classRefl  = new \ReflectionClass($this);
+		$classDir   = dirname($classRefl->getFileName());
+		$classShort = $classRefl->getShortName();
+
+		return "$classDir/templates/$classShort.phtml";
+	}
+
+
+	/**
+	 */
+	protected function beforeRender()
+	{
 	}
 }
