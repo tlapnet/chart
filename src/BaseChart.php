@@ -45,7 +45,7 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$classDir   = dirname($classRefl->getFileName());
 		$classShort = $classRefl->getShortName();
 
-		return "$classDir/templates/$classShort.phtml";
+		return "$classDir/templates/jqplot/$classShort.phtml";
 	}
 
 
