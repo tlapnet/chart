@@ -28,24 +28,31 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$this->beforeRender();
 
 		$t = $this->getTemplate();
-		$t->setFile($this->getTemplateFile());
 
 		$t->series = $this->series;
-		$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
 		$t->width = $this->width;
 		$t->height = $this->height;
-		
+
+		$t->setFile($this->getTemplateFile('jqplot'));
+		$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
 		$t->render();
+
+		$c3Template = $this->getTemplateFile('c3');
+		if (file_exists($c3Template)) {
+			$t->setFile($this->getTemplateFile('c3'));
+			$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
+			$t->render();
+		}
 	}
 
 
-	private function getTemplateFile()
+	private function getTemplateFile($type)
 	{
 		$classRefl  = new \ReflectionClass($this);
 		$classDir   = dirname($classRefl->getFileName());
 		$classShort = $classRefl->getShortName();
 
-		return "$classDir/templates/jqplot/$classShort.phtml";
+		return "$classDir/templates/$type/$classShort.phtml";
 	}
 
 
