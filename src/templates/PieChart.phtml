@@ -3,7 +3,7 @@
 		nedostatek dat k realizaci grafu...
 	</div>
 </div>
-{dump $series}
+
 <script n:if="$type === 'pie'" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.pieRenderer.min.js"></script>
 <script n:if="$type === 'donut'" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.donutRenderer.min.js"></script>
 <script type="text/javascript" n:if="$series[0]->getSegments()">
