@@ -1,5 +1,10 @@
 <div id="<?php echo $chartId ?>" style="width: <?php echo $width ?>; height: <?php echo $height ?>;"></div>
 <script type="text/javascript">
+	var axis = {
+		x: {
+			type: 'indexed'
+		}
+	};
 	var xs = {};
 	var names = {};
 	var colors = {};
@@ -9,7 +14,10 @@
 	<?php foreach ($series as $serie): ?>
 		<?php $i++ ?>
 
-		xs['data<?php echo $i ?>'] = 'x<?php echo $i ?>';
+		<?php if (!$isXAxisCategorized): ?>
+			xs['data<?php echo $i ?>'] = 'x<?php echo $i ?>';
+		<?php endif ?>
+
 		names['data<?php echo $i ?>'] = '<?php echo $serie->getTitle() ?>';
 
 		<?php if ($serie->getColor() !== null): ?>
@@ -24,15 +32,21 @@
 			columnY.push(<?php echo $segment->getY() ?>);
 		<?php endforeach ?>
 
-		columns.push(columnX);
+		<?php if (!$isXAxisCategorized): ?>
+			columns.push(columnX);
+		<?php elseif ($isXAxisCategorized && $i === 1): ?>
+			columnX.shift();
+			axis.x.type = 'category';
+			axis.x.categories = columnX;
+		<?php endif ?>
+
 		columns.push(columnY);
 		//series.push({ color: '<?php echo $serie->getColor() ?>', label: '<?php echo $serie->getTitle() ?>' });
 	<?php endforeach ?>
 
-	console.log(columns);
-
 	c3.generate({
 		bindto: '#<?php echo $chartId ?>',
+		axis: axis,
 		data: {
 			xs: xs,
 			names: names,

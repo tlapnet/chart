@@ -1,5 +1,3 @@
-{var $useCategoryAxisRenderer => false}
-
 <div id="{$chartId}" style="width: {!$width}; height: {!$height};"></div>
 
 <script type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.highlighter.min.js"></script>
@@ -16,12 +14,7 @@
 			serie = [];
 			
 			{foreach $serie->getSegments() as $segment}
-				{var $x => $segment->getX()}
-				{if !$useCategoryAxisRenderer && !is_numeric($x)}
-					{var $useCategoryAxisRenderer => true}
-				{/if}
-
-				serie.push([{$x}, {$segment->getY()}]);
+				serie.push([{$segment->getX()}, {$segment->getY()}]);
 			{/foreach}
 				
 			data.push(serie);
@@ -33,7 +26,7 @@
 		jQuery.jqplot({$chartId}, data, {
 			axes: {
 				xaxis: {
-					{if $useCategoryAxisRenderer}renderer: jQuery.jqplot.CategoryAxisRenderer{/if}
+					{if $isXAxisCategorized}renderer: jQuery.jqplot.CategoryAxisRenderer{/if}
 				}
 			},
 			highlighter: {
@@ -51,4 +44,4 @@
 	});
 //]]>
 </script>
-<script n:if="$useCategoryAxisRenderer" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script n:if="$isXAxisCategorized" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
