@@ -27,6 +27,11 @@
 			axes: {
 				xaxis: {
 					{if $isXAxisCategorized}renderer: jQuery.jqplot.CategoryAxisRenderer{/if}
+				},
+				yaxis: {
+					tickOptions: {
+						formatString: '%i' + {$valueSuffix}
+					}
 				}
 			},
 			highlighter: {

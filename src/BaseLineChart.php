@@ -8,20 +8,8 @@ namespace Tlapnet\Nette\Chart;
  */
 abstract class BaseLineChart extends BaseChart
 {
-	/** @var int */
-	private $decimals = 0;
-
 	/** @var string */
 	private $valueSuffix = '';
-
-
-	/**
-	 * @param int $decimals
-	 */
-	public function setDecimals($decimals)
-	{
-		$this->decimals = (int) $decimals;
-	}
 
 
 	/**
@@ -40,7 +28,6 @@ abstract class BaseLineChart extends BaseChart
 	{
 		$params                = parent::getTemplateParameters();
 		$params['valueSuffix'] = $this->valueSuffix;
-		$params['decimals']    = $this->decimals;
 
 		return $params;
 	}
