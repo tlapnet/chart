@@ -3,7 +3,7 @@
 namespace Tlapnet\Nette\Chart\Serie;
 
 
-abstract class BaseSerie extends \Nette\Object
+abstract class BaseSerie
 {
 
 
@@ -14,7 +14,7 @@ abstract class BaseSerie extends \Nette\Object
 	protected $color = null;
 
 	/** @var null|string */
-	private $title = null;
+	protected $title = null;
 
 
 	/**

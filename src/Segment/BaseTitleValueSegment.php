@@ -4,7 +4,7 @@ namespace Tlapnet\Nette\Chart\Segment;
 
 
 
-abstract class BaseTitleValueSegment extends \Nette\Object
+abstract class BaseTitleValueSegment
 {
 	
 	/** @var string */

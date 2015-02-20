@@ -3,7 +3,7 @@
 namespace Tlapnet\Nette\Chart\Segment;
 
 
-abstract class BaseDateSegment extends \Nette\Object
+abstract class BaseDateSegment
 {
 
 

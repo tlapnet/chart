@@ -4,7 +4,7 @@ namespace Tlapnet\Nette\Chart\Segment;
 
 
 
-class LineSegment extends \Nette\Object
+class LineSegment
 {
 	
 	/** @var float */
