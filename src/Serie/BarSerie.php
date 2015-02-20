@@ -18,10 +18,12 @@ class BarSerie extends BaseSerie
 
 	/**
 	 * @param string $title
+	 * @param array $pointLabels
+	 * @param bool $isSumSerie
 	 */
 	public function __construct($title, $pointLabels = array(), $isSumSerie = false)
 	{
-		$this->title       = (string)$title;
+		$this->title       = (string) $title;
 		$this->pointLabels = $pointLabels;
 		$this->isSumSerie  = $isSumSerie;
 	}

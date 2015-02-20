@@ -15,7 +15,7 @@ abstract class BaseDateSegment
 
 
 	/**
-	 * @param float $dateTime
+	 * @param float $time
 	 * @param float $value
 	 */
 	function __construct($time, $value)
