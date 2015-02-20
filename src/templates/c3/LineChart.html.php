@@ -5,23 +5,25 @@
 			type: 'indexed'
 		}
 	};
-	var xs = {};
-	var names = {};
-	var colors = {};
-	var columns = [];
+	var data = {
+		xs: {},
+		names: {},
+		colors: {},
+		columns: []
+	};
 
 	<?php $i = 0 ?>
 	<?php foreach ($series as $serie): ?>
 		<?php $i++ ?>
 
 		<?php if (!$isXAxisCategorized): ?>
-			xs['data<?php echo $i ?>'] = 'x<?php echo $i ?>';
+			data.xs['data<?php echo $i ?>'] = 'x<?php echo $i ?>';
 		<?php endif ?>
 
-		names['data<?php echo $i ?>'] = '<?php echo $serie->getTitle() ?>';
+			data.names['data<?php echo $i ?>'] = '<?php echo $serie->getTitle() ?>';
 
 		<?php if ($serie->getColor() !== null): ?>
-			colors['data<?php echo $i ?>'] = '<?php echo $serie->getColor() ?>';
+			data.colors['data<?php echo $i ?>'] = '<?php echo $serie->getColor() ?>';
 		<?php endif ?>
 
 		var columnX = ['x<?php echo $i ?>'];
@@ -33,25 +35,19 @@
 		<?php endforeach ?>
 
 		<?php if (!$isXAxisCategorized): ?>
-			columns.push(columnX);
+			data.columns.push(columnX);
 		<?php elseif ($isXAxisCategorized && $i === 1): ?>
 			columnX.shift();
 			axis.x.type = 'category';
 			axis.x.categories = columnX;
 		<?php endif ?>
 
-		columns.push(columnY);
-		//series.push({ color: '<?php echo $serie->getColor() ?>', label: '<?php echo $serie->getTitle() ?>' });
+		data.columns.push(columnY);
 	<?php endforeach ?>
 
 	c3.generate({
 		bindto: '#<?php echo $chartId ?>',
 		axis: axis,
-		data: {
-			xs: xs,
-			names: names,
-			colors: colors,
-			columns: columns
-		}
+		data: data
 	});
 </script>
