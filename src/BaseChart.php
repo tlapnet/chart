@@ -27,15 +27,7 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	public function render()
 	{
 		$this->beforeRender();
-
-		$t = $this->getTemplate();
-		$t->setFile($this->getTemplateFile('jqplot'));
-
-		foreach ($this->getTemplateParameters() as $key => $value) {
-			$t->$key = $value;
-		}
-
-		$t->render();
+		$this->renderOldTemplate();
 
 		$c3Template = $this->getTemplateFile('c3');
 
@@ -45,6 +37,27 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	}
 
 
+	/**
+	 * todo: Delete after remove jqplot
+	 */
+	private function renderOldTemplate()
+	{
+		$t = $this->getTemplate();
+		$t->setFile($this->getTemplateFile('jqplot'));
+
+		foreach ($this->getTemplateParameters() as $key => $value) {
+			$t->$key = $value;
+		}
+
+		$t->render();
+	}
+
+
+	/**
+	 * @param string $file
+	 * @param array $parameters
+	 * @return string
+	 */
 	private function renderFile($file, array $parameters)
 	{
 		extract($parameters);
@@ -54,6 +67,10 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	}
 
 
+	/**
+	 * @param string $type
+	 * @return string
+	 */
 	private function getTemplateFile($type)
 	{
 		$classRefl  = new \ReflectionClass($this);
