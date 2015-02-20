@@ -32,7 +32,7 @@ abstract class BaseDateSegment extends \Nette\Object
 			$this->dateTime = new \DateTime($time);
 		}
 
-		$this->value = (float)$value;
+		$this->value = (float) $value;
 	}
 
 

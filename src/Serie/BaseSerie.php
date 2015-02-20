@@ -54,6 +54,7 @@ abstract class BaseSerie extends \Nette\Object
 
 	/**
 	 * @param null|string $color
+	 * @return static
 	 */
 	public function setColor($color)
 	{
@@ -64,6 +65,7 @@ abstract class BaseSerie extends \Nette\Object
 
 	/**
 	 * @param null|string $title
+	 * @return static
 	 */
 	public function setTitle($title)
 	{

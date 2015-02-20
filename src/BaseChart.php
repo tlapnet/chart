@@ -2,6 +2,7 @@
 
 namespace Tlapnet\Nette\Chart;
 
+use Tlapnet\Nette\Chart\Serie\BaseSerie;
 
 
 abstract class BaseChart extends \Nette\Application\UI\Control
@@ -10,7 +11,7 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	/** @var string CSS value */
 	private static $rendersCount = 0;
 
-	/** @var array */
+	/** @var BaseSerie[] */
 	protected $series = array();
 	
 	/** @var string CSS value */
