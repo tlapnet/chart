@@ -2,17 +2,19 @@
 
 namespace Tlapnet\Nette\Chart;
 
+use Tlapnet\Nette\Chart\Serie\LineDateSerie;
 
 
+/**
+ * @author Ludek Benedik
+ */
 class LineDateChart extends BaseLineChart
 {
-	
 	/**
-	 * @param Serie\LineDateSerie $serie 
+	 * @param LineDateSerie $serie
 	 */
-	public function addSerie(Serie\LineDateSerie $serie)
+	public function addSerie(LineDateSerie $serie)
 	{
 		$this->series[] = $serie;
 	}
-
 }

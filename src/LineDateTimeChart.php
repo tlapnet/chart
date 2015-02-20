@@ -2,15 +2,18 @@
 
 namespace Tlapnet\Nette\Chart;
 
+use Tlapnet\Nette\Chart\Serie\LineDateTimeSerie;
 
+
+/**
+ * @author Ludek Benedik
+ */
 class LineDateTimeChart extends BaseLineChart
 {
-
-
 	/**
-	 * @param Serie\LineDateSerie $serie
+	 * @param LineDateTimeSerie $serie
 	 */
-	public function addSerie(Serie\LineDateTimeSerie $serie)
+	public function addSerie(LineDateTimeSerie $serie)
 	{
 		$this->series[] = $serie;
 	}
@@ -21,7 +24,7 @@ class LineDateTimeChart extends BaseLineChart
 	 */
 	protected function getTemplateParameters()
 	{
-		$params = parent::getTemplateParameters();
+		$params            = parent::getTemplateParameters();
 		$params['minTime'] = $this->getMinTime();
 		$params['maxTime'] = $this->getMaxTime();
 
@@ -36,7 +39,7 @@ class LineDateTimeChart extends BaseLineChart
 	{
 		$min = array();
 
-		foreach($this->series as $serie){
+		foreach ($this->series as $serie) {
 			$min[] = $serie->getMinTime();
 		}
 
@@ -51,11 +54,10 @@ class LineDateTimeChart extends BaseLineChart
 	{
 		$max = array();
 
-		foreach($this->series as $serie){
+		foreach ($this->series as $serie) {
 			$max[] = $serie->getMaxTime();
 		}
 
 		return max($max);
 	}
-
 }

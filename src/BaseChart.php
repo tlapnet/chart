@@ -2,26 +2,30 @@
 
 namespace Tlapnet\Nette\Chart;
 
+use ReflectionClass;
 use Tlapnet\Nette\Chart\Serie\BaseSerie;
 
 
+/**
+ * @author Ludek Benedik
+ */
 abstract class BaseChart extends \Nette\Application\UI\Control
 {
-
 	/** @var string CSS value */
 	private static $rendersCount = 0;
 
 	/** @var BaseSerie[] */
 	protected $series = array();
-	
+
 	/** @var string CSS value */
 	private $width = '100%';
-	
+
 	/** @var string CSS value */
 	private $height = 'auto';
 
-	
-	/*
+
+	/**
+	 * todo: Remove after make Chart Module
 	 * Nette control
 	 */
 	public function render()
@@ -73,7 +77,7 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	 */
 	private function getTemplateFile($type)
 	{
-		$classRefl  = new \ReflectionClass($this);
+		$classRefl  = new ReflectionClass($this);
 		$classDir   = dirname($classRefl->getFileName());
 		$classShort = $classRefl->getShortName();
 		$ext        = $type === 'c3' ? 'html.php' : 'phtml';
@@ -89,9 +93,9 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 	{
 		return [
 			'chartId' => 'tlapnet-nette-chart-' . self::$rendersCount++,
-			'width' => $this->width,
-			'height' => $this->height,
-			'series' => $this->series,
+			'width'   => $this->width,
+			'height'  => $this->height,
+			'series'  => $this->series,
 		];
 	}
 

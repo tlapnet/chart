@@ -2,12 +2,15 @@
 
 namespace Tlapnet\Nette\Chart\Segment;
 
+use DateTime;
 
+
+/**
+ * @author Ludek Benedik
+ */
 abstract class BaseDateSegment
 {
-
-
-	/** @var \DateTime */
+	/** @var DateTime */
 	private $dateTime;
 
 	/** @var float */
@@ -21,15 +24,15 @@ abstract class BaseDateSegment
 	function __construct($time, $value)
 	{
 
-		if($time instanceof \DateTime){
+		if ($time instanceof DateTime) {
 			$this->dateTime = $time;
 		}
-		elseif(is_numeric($time)){
-			$this->dateTime = new \DateTime();
+		elseif (is_numeric($time)) {
+			$this->dateTime = new DateTime();
 			$this->dateTime->setTimestamp($time);
 		}
-		else{
-			$this->dateTime = new \DateTime($time);
+		else {
+			$this->dateTime = new DateTime($time);
 		}
 
 		$this->value = (float) $value;
@@ -37,7 +40,7 @@ abstract class BaseDateSegment
 
 
 	/**
-	 * @return \DateTime
+	 * @return DateTime
 	 */
 	public function getDateTime()
 	{
@@ -52,5 +55,4 @@ abstract class BaseDateSegment
 	{
 		return $this->value;
 	}
-
 }

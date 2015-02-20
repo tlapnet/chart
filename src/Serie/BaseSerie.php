@@ -3,14 +3,15 @@
 namespace Tlapnet\Nette\Chart\Serie;
 
 
+/**
+ * @author Ludek Benedik
+ */
 abstract class BaseSerie
 {
-
-
 	/** @var array */
 	protected $segments = array();
 
-	/** @var null|string color */
+	/** @var null|string Css color */
 	protected $color = null;
 
 	/** @var null|string */
@@ -72,5 +73,4 @@ abstract class BaseSerie
 		$this->title = $title;
 		return $this;
 	}
-
 }

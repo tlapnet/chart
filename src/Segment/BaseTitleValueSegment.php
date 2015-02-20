@@ -3,30 +3,29 @@
 namespace Tlapnet\Nette\Chart\Segment;
 
 
-
+/**
+ * @author Ludek Benedik
+ */
 abstract class BaseTitleValueSegment
 {
-	
 	/** @var string */
 	private $title;
-	
+
 	/** @var float */
 	private $value;
-	
-	
-	
+
+
 	/**
 	 * @param string $title
-	 * @param float $value 
+	 * @param float $value
 	 */
 	function __construct($title, $value)
 	{
 		$this->title = (string) $title;
 		$this->value = (float) $value;
 	}
-	
-	
-	
+
+
 	/**
 	 * @return string
 	 */
@@ -35,8 +34,7 @@ abstract class BaseTitleValueSegment
 		return $this->title;
 	}
 
-	
-	
+
 	/**
 	 * @return float
 	 */
@@ -44,5 +42,4 @@ abstract class BaseTitleValueSegment
 	{
 		return $this->value;
 	}
-
 }

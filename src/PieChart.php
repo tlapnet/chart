@@ -2,50 +2,52 @@
 
 namespace Tlapnet\Nette\Chart;
 
+use LogicException;
+use Tlapnet\Nette\Chart\Serie\PieSerie;
 
 
+/**
+ * @author Ludek Benedik
+ */
 class PieChart extends BaseChart
 {
-	
 	const TYPE_PIE = 'pie';
 	const TYPE_DONUT = 'donut';
 
 	const DATA_LABEL_TYPE_VALUE = 'value';
 	const DATA_LABEL_TYPE_PERCENTAGE = 'percent';
 
-	
-	
+
 	/** @var string */
 	private $type = self::TYPE_PIE;
-	
+
 	/** @var string */
 	private $dataLabelType = self::DATA_LABEL_TYPE_PERCENTAGE;
-	
 
-	
-	
-	
+
 	/**
-	 * @param Serie\PieSerie $serie 
+	 * @param PieSerie $serie
 	 */
-	public function addSerie(Serie\PieSerie $serie)
+	public function addSerie(PieSerie $serie)
 	{
 		$this->series[] = $serie;
 	}
-	
-	
-	
+
+
+	/**
+	 * @param string $type
+	 */
 	public function setDataLabelType($type)
 	{
 		static $allowedTypes = array(
 			self::DATA_LABEL_TYPE_VALUE,
 			self::DATA_LABEL_TYPE_PERCENTAGE,
 		);
-		
+
 		if (!in_array($type, $allowedTypes, true)) {
-			throw new \LogicException("Undefined data label type '$type'.");
+			throw new LogicException("Undefined data label type '$type'.");
 		}
-		
+
 		$this->dataLabelType = $type;
 	}
 
@@ -55,11 +57,10 @@ class PieChart extends BaseChart
 	 */
 	protected function getTemplateParameters()
 	{
-		$params = parent::getTemplateParameters();
-		$params['type'] = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
+		$params                  = parent::getTemplateParameters();
+		$params['type']          = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
 		$params['dataLabelType'] = $this->dataLabelType;
 
 		return $params;
 	}
-
 }

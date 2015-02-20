@@ -2,13 +2,14 @@
 
 namespace Tlapnet\Nette\Chart\Serie;
 
-use Tlapnet\Nette\Chart\Segment;
+use Tlapnet\Nette\Chart\Segment\BarSegment;
 
 
+/**
+ * @author Ludek Benedik
+ */
 class BarSerie extends BaseSerie
 {
-
-
 	/** @var array */
 	private $pointLabels;
 
@@ -30,9 +31,9 @@ class BarSerie extends BaseSerie
 
 
 	/**
-	 * @param Segment\BarSegment $segment
+	 * @param BarSegment $segment
 	 */
-	public function addSegment(Segment\BarSegment $segment)
+	public function addSegment(BarSegment $segment)
 	{
 		$this->segments[] = $segment;
 	}
@@ -53,17 +54,15 @@ class BarSerie extends BaseSerie
 	public function getPointLabels()
 	{
 		// fix for https://bitbucket.org/cleonello/jqplot/issue/402/, after fix change BarChart (remove labels: {!= json_encode($serie->getPointLabels())} from line 37)
-		if(empty($this->pointLabels)){
+		if (empty($this->pointLabels)) {
 			$arr = array();
-			foreach($this->getSegments() as $segment){
+			foreach ($this->getSegments() as $segment) {
 				$arr[] = $segment->getValue();
 			}
 			return $arr;
 		}
-		else{
+		else {
 			return $this->pointLabels;
 		}
 	}
-
-
 }

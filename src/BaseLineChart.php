@@ -3,19 +3,20 @@
 namespace Tlapnet\Nette\Chart;
 
 
+/**
+ * @author Ludek Benedik
+ */
 abstract class BaseLineChart extends BaseChart
 {
-
-
 	/** @var string */
 	private $valueSuffix = '';
 
-	/** @var string */
+	/** @var int */
 	private $decimals = 0;
 
 
 	/**
-	 * @param string $decimals
+	 * @param int $decimals
 	 */
 	public function setDecimals($decimals)
 	{
@@ -37,7 +38,7 @@ abstract class BaseLineChart extends BaseChart
 	 */
 	public function setValueSuffix($valueSuffix)
 	{
-		$this->valueSuffix = (string)$valueSuffix;
+		$this->valueSuffix = (string) $valueSuffix;
 	}
 
 
@@ -55,11 +56,10 @@ abstract class BaseLineChart extends BaseChart
 	 */
 	protected function getTemplateParameters()
 	{
-		$params = parent::getTemplateParameters();
+		$params                = parent::getTemplateParameters();
 		$params['valueSuffix'] = $this->valueSuffix;
-		$params['decimals'] = $this->decimals;
+		$params['decimals']    = $this->decimals;
 
 		return $params;
 	}
-
 }

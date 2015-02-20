@@ -2,13 +2,14 @@
 
 namespace Tlapnet\Nette\Chart\Serie;
 
-use Tlapnet\Nette\Chart\Segment;
+use Tlapnet\Nette\Chart\Segment\LineDateTimeSegment;
 
 
+/**
+ * @author Ludek Benedik
+ */
 class LineDateTimeSerie extends BaseSerie
 {
-
-
 	/** @var int */
 	private $minTime = 999999999999999;
 
@@ -16,13 +17,10 @@ class LineDateTimeSerie extends BaseSerie
 	private $maxTime = 0;
 
 
-
-
-
 	/**
-	 * @param Segment\LineDateSegment $segment
+	 * @param LineDateTimeSegment $segment
 	 */
-	public function addSegment(Segment\LineDateTimeSegment $segment)
+	public function addSegment(LineDateTimeSegment $segment)
 	{
 		$t = $segment->getDateTime()->format('U');
 
@@ -34,7 +32,7 @@ class LineDateTimeSerie extends BaseSerie
 
 
 	/**
-	 * @return int
+	 * @return int Timestamp
 	 */
 	public function getMinTime()
 	{
@@ -42,10 +40,11 @@ class LineDateTimeSerie extends BaseSerie
 	}
 
 
-	/** @return int */
-	public function  getMaxTime()
+	/**
+	 * @return int Timestamp
+	 */
+	public function getMaxTime()
 	{
 		return $this->maxTime;
 	}
-
 }
