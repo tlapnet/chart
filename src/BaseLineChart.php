@@ -20,7 +20,7 @@ abstract class BaseLineChart extends BaseChart
 	 */
 	public function setDecimals($decimals)
 	{
-		$this->decimals = $decimals;
+		$this->decimals = (int) $decimals;
 	}
 
 
