@@ -8,11 +8,11 @@ namespace Tlapnet\Nette\Chart;
  */
 abstract class BaseLineChart extends BaseChart
 {
-	/** @var string */
-	private $valueSuffix = '';
-
 	/** @var int */
 	private $decimals = 0;
+
+	/** @var string */
+	private $valueSuffix = '';
 
 
 	/**
@@ -25,29 +25,11 @@ abstract class BaseLineChart extends BaseChart
 
 
 	/**
-	 * @return string
-	 */
-	public function getDecimals()
-	{
-		return $this->decimals;
-	}
-
-
-	/**
 	 * @param string $valueSuffix
 	 */
 	public function setValueSuffix($valueSuffix)
 	{
 		$this->valueSuffix = (string) $valueSuffix;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getValueSuffix()
-	{
-		return $this->valueSuffix;
 	}
 
 

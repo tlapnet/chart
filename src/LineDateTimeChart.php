@@ -35,7 +35,7 @@ class LineDateTimeChart extends BaseLineChart
 	/**
 	 * @return int
 	 */
-	public function getMinTime()
+	private function getMinTime()
 	{
 		$min = array();
 
@@ -50,7 +50,7 @@ class LineDateTimeChart extends BaseLineChart
 	/**
 	 * @return int
 	 */
-	public function getMaxTime()
+	private function getMaxTime()
 	{
 		$max = array();
 
