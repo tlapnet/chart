@@ -5,6 +5,7 @@ namespace Tlapnet\Nette\Chart;
 use LogicException;
 use Tlapnet\Nette\Chart\Segment\BarSegment;
 use Tlapnet\Nette\Chart\Serie\BarSerie;
+use Tlapnet\Nette\Chart\Util\SeriesValidator;
 
 
 /**
@@ -82,7 +83,10 @@ class BarChart extends BaseChart
 			if ($this->showStackSum) {
 				$this->addStackedSumSerie();
 			}
-			$this->validateSegmentsInSeries();
+
+			SeriesValidator::assertXSegmentEquality($this->series, function($segment) {
+				return $segment->getTitle();
+			});
 		}
 
 		parent::beforeRender();
@@ -124,46 +128,5 @@ class BarChart extends BaseChart
 		}
 
 		$this->addSerie($sumSerie);
-	}
-
-
-	/**
-	 * @throws LogicException
-	 */
-	private function validateSegmentsInSeries()
-	{
-		$firstSerieSegmentKeyPositions = null;
-
-		foreach ($this->series as $serie) {
-			$segments = $serie->getSegments();
-
-			if ($firstSerieSegmentKeyPositions === null) {
-				$firstSerieSegmentKeyPositions = array();
-				foreach ($segments as $position => $segment) {
-					$firstSerieSegmentKeyPositions[$segment->getTitle()] = $position;
-				}
-
-				if (count($segments) !== count($firstSerieSegmentKeyPositions)) {
-					throw new LogicException("Segments in first serie doesn't have unique titles.");
-				}
-				continue;
-			}
-
-			if (count($segments) !== count($firstSerieSegmentKeyPositions)) {
-				throw new LogicException("Serie '{$serie->getTitle()}' doesn't have same number of segments as first serie or doesn't have unigue titles.");
-			}
-
-			foreach ($segments as $position => $segment) {
-				$title = $segment->getTitle();
-
-				if (!isset($firstSerieSegmentKeyPositions[$title])) {
-					throw new LogicException("Serie '{$serie->getTitle()}' doesn't have same titles as first serie.");
-				}
-
-				if ($position !== $firstSerieSegmentKeyPositions[$title]) {
-					throw new LogicException("Serie '{$serie->getTitle()}' doesn't have same titles positions as first serie.");
-				}
-			}
-		}
 	}
 }
