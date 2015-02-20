@@ -47,6 +47,14 @@
 
 	c3.generate({
 		bindto: '#<?php echo $chartId ?>',
+		grid: {
+			x: {
+				show: true
+			},
+			y: {
+				show: true
+			}
+		},
 		axis: axis,
 		data: data
 	});
