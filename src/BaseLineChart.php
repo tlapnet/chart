@@ -14,15 +14,6 @@ abstract class BaseLineChart extends BaseChart
 	private $decimals = 0;
 
 
-	protected function beforeRender()
-	{
-		parent::beforeRender();
-		$t              = $this->getTemplate();
-		$t->valueSuffix = $this->valueSuffix;
-		$t->decimals    = $this->decimals;
-	}
-
-
 	/**
 	 * @param string $decimals
 	 */
@@ -56,6 +47,19 @@ abstract class BaseLineChart extends BaseChart
 	public function getValueSuffix()
 	{
 		return $this->valueSuffix;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getTemplateParameters()
+	{
+		$params = parent::getTemplateParameters();
+		$params['valueSuffix'] = $this->valueSuffix;
+		$params['decimals'] = $this->decimals;
+
+		return $params;
 	}
 
 }

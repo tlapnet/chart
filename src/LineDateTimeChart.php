@@ -16,13 +16,16 @@ class LineDateTimeChart extends BaseLineChart
 	}
 
 
-	protected function beforeRender()
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getTemplateParameters()
 	{
-		parent::beforeRender();
+		$params = parent::getTemplateParameters();
+		$params['minTime'] = $this->getMinTime();
+		$params['maxTime'] = $this->getMaxTime();
 
-		$t          = $this->getTemplate();
-		$t->minTime = $this->getMinTime();
-		$t->maxTime = $this->getMaxTime();
+		return $params;
 	}
 
 

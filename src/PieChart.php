@@ -49,17 +49,17 @@ class PieChart extends BaseChart
 		$this->dataLabelType = $type;
 	}
 
-	
-	
-	/*
-	 * BaseChart
+
+	/**
+	 * {@inheritdoc}
 	 */
-	protected function beforeRender()
+	protected function getTemplateParameters()
 	{
-		parent::beforeRender();
-		$t = $this->getTemplate();
-		$t->type = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
-		$t->dataLabelType = $this->dataLabelType;
+		$params = parent::getTemplateParameters();
+		$params['type'] = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
+		$params['dataLabelType'] = $this->dataLabelType;
+
+		return $params;
 	}
-	
+
 }

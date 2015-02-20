@@ -29,24 +29,18 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$this->beforeRender();
 
 		$t = $this->getTemplate();
-
-		$t->series = $this->series;
-		$t->width = $this->width;
-		$t->height = $this->height;
-
 		$t->setFile($this->getTemplateFile('jqplot'));
-		$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
+
+		foreach ($this->getTemplateParameters() as $key => $value) {
+			$t->$key = $value;
+		}
+
 		$t->render();
 
 		$c3Template = $this->getTemplateFile('c3');
 
 		if (file_exists($c3Template)) {
-			echo $this->renderFile($c3Template, [
-				'series' => $this->series,
-				'width' => $this->width,
-				'height' => $this->height,
-				'chartId' => 'tlapnet-nette-chart-' . self::$rendersCount++,
-			]);
+			echo $this->renderFile($c3Template, $this->getTemplateParameters());
 		}
 	}
 
@@ -68,6 +62,20 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$ext        = $type === 'c3' ? 'html.php' : 'phtml';
 
 		return "$classDir/templates/$type/$classShort.$ext";
+	}
+
+
+	/**
+	 * @return array
+	 */
+	protected function getTemplateParameters()
+	{
+		return [
+			'chartId' => 'tlapnet-nette-chart-' . self::$rendersCount++,
+			'width' => $this->width,
+			'height' => $this->height,
+			'series' => $this->series,
+		];
 	}
 
 

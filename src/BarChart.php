@@ -86,12 +86,22 @@ class BarChart extends BaseChart
 		}
 		
 		parent::beforeRender();
-		$t = $this->getTemplate();
-		$t->isStacked = $this->isStacked;
-		$t->showStackSum = $this->showStackSum;
-		$t->valueSuffix = $this->valueSuffix;
-		$t->decimals = $this->decimals;
-		$t->sumFormatCallback = $this->sumFormatCallback;
+	}
+
+
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function getTemplateParameters()
+	{
+		$params = parent::getTemplateParameters();
+		$params['isStacked'] = $this->isStacked;
+		$params['showStackSum'] = $this->showStackSum;
+		$params['valueSuffix'] = $this->valueSuffix;
+		$params['decimals'] = $this->decimals;
+		$params['sumFormatCallback'] = $this->sumFormatCallback;
+
+		return $params;
 	}
 
 
