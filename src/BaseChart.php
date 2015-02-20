@@ -39,11 +39,24 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$t->render();
 
 		$c3Template = $this->getTemplateFile('c3');
+
 		if (file_exists($c3Template)) {
-			$t->setFile($this->getTemplateFile('c3'));
-			$t->chartId = 'tlapnet-nette-chart-' . self::$rendersCount++;
-			$t->render();
+			echo $this->renderFile($c3Template, [
+				'series' => $this->series,
+				'width' => $this->width,
+				'height' => $this->height,
+				'chartId' => 'tlapnet-nette-chart-' . self::$rendersCount++,
+			]);
 		}
+	}
+
+
+	private function renderFile($file, array $parameters)
+	{
+		extract($parameters);
+		ob_start();
+		require $file;
+		return ob_get_clean();
 	}
 
 
@@ -52,8 +65,9 @@ abstract class BaseChart extends \Nette\Application\UI\Control
 		$classRefl  = new \ReflectionClass($this);
 		$classDir   = dirname($classRefl->getFileName());
 		$classShort = $classRefl->getShortName();
+		$ext        = $type === 'c3' ? 'html.php' : 'phtml';
 
-		return "$classDir/templates/$type/$classShort.phtml";
+		return "$classDir/templates/$type/$classShort.$ext";
 	}
 
 
