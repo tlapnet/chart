@@ -3,9 +3,15 @@
 	var axis = {
 		x: {
 			type: 'indexed'
+		},
+		y : {
+			tick: {
+                format: function (d) { return d + '<?php echo $valueSuffix ?>'; }
+			}
 		}
 	};
 	var data = {
+		//labels: true,
 		xs: {},
 		names: {},
 		colors: {},
