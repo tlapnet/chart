@@ -36,19 +36,7 @@
 			{/foreach}
 				
 			data.push(serie);
-			{if $isStacked && $showStackSum}
-				{var $labels => json_encode($serie->getPointLabels())}
-				{if $serie->isSumSerie()}
-					{if isset($sumFormatCallback)}
-						{var $labels => json_encode(array_map($sumFormatCallback,$serie->getPointLabels()))}
-					{/if}
-					series.push({ label: {$serie->getTitle()}, pointLabels:{ labels: {!$labels}}, ypadding: 25, show: false});
-				{else}
-					series.push({ label: {$serie->getTitle()}, pointLabels:{ labels: {!$labels}, ypadding: -20}});
-				{/if}
-			{else}
-				series.push({ label: {$serie->getTitle()} });
-			{/if}
+			series.push({ label: {$serie->getTitle()} });
 
 		{/foreach}
 		
@@ -62,7 +50,7 @@
 				pointLabels: {
 					show: true,
 					hideZeros: true,
-					escapeHTML: false,
+					escapeHTML: false
 				}
 
 			},

@@ -22,12 +22,6 @@ class BarChart extends BaseChart
 	/** @var string */
 	private $decimals = 0;
 
-	/** @var bool */
-	private $showStackSum = false;
-
-	/** @var callback */
-	private $sumFormatCallback;
-
 
 	/**
 	 * @param BarSerie $serie
@@ -48,15 +42,6 @@ class BarChart extends BaseChart
 
 
 	/**
-	 * @param bool $showStackSum
-	 */
-	public function setShowStackSum($showStackSum)
-	{
-		$this->showStackSum = $showStackSum;
-	}
-
-
-	/**
 	 * @param $suffix
 	 */
 	public function setValueSuffix($suffix)
@@ -66,28 +51,13 @@ class BarChart extends BaseChart
 
 
 	/**
-	 * @param callback $sumFormatCallback
-	 */
-	public function setSumFormatCallback($sumFormatCallback)
-	{
-		$this->sumFormatCallback = $sumFormatCallback;
-	}
-
-
-	/**
 	 * {@inheritdoc}
 	 */
 	protected function beforeRender()
 	{
-		if ($this->isStacked) {
-			if ($this->showStackSum) {
-				$this->addStackedSumSerie();
-			}
-
-			SeriesValidator::assertXSegmentEquality($this->series, function($segment) {
-				return $segment->getTitle();
-			});
-		}
+		SeriesValidator::assertXSegmentEquality($this->series, function($segment) {
+			return $segment->getTitle();
+		});
 
 		parent::beforeRender();
 	}
@@ -100,33 +70,9 @@ class BarChart extends BaseChart
 	{
 		$params                      = parent::getTemplateParameters();
 		$params['isStacked']         = $this->isStacked;
-		$params['showStackSum']      = $this->showStackSum;
 		$params['valueSuffix']       = $this->valueSuffix;
 		$params['decimals']          = $this->decimals;
-		$params['sumFormatCallback'] = $this->sumFormatCallback;
 
 		return $params;
-	}
-
-
-	/**
-	 */
-	private function addStackedSumSerie()
-	{
-		$sums = array();
-
-		foreach ($this->series as $serie) {
-			foreach ($serie->getSegments() as $position => $segment) {
-				$sums[$position] = isset($sums[$position]) ? $sums[$position] : 0;
-				$sums[$position] += $segment->getValue();
-			}
-		}
-
-		$sumSerie = new BarSerie('sum', $sums, true);
-		foreach ($this->series[0]->getSegments() as $segment) {
-			$sumSerie->addSegment(new BarSegment($segment->getTitle(), 0));
-		}
-
-		$this->addSerie($sumSerie);
 	}
 }

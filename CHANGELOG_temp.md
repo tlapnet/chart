@@ -4,6 +4,8 @@
  * Zruseni public metod BaseLineChart::getDecimals(), BaseLineChart::getValueSuffix(), LineDateTimeChart::getMinTime(), LineDateTimeChart::getMaxTime()
  * Zruseni public metody BaseLineChart::setDecimals()
  * Zruseni tridy PieSerie, metody PieChart::addSerie() a pridani metody PieChart::addSegment()
+ * Zruseni metod BarChart::setShowStackSum() a BarChart::setSumFormatCallback()
+ * Zruseni metod BarSerie::isSumSerie() a BarSerie::getPointLabels()
 
 
 # TODO
