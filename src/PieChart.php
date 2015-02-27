@@ -3,7 +3,7 @@
 namespace Tlapnet\Nette\Chart;
 
 use LogicException;
-use Tlapnet\Nette\Chart\Serie\PieSerie;
+use Tlapnet\Nette\Chart\Segment\PieSegment;
 
 
 /**
@@ -24,13 +24,16 @@ class PieChart extends BaseChart
 	/** @var string */
 	private $dataLabelType = self::DATA_LABEL_TYPE_PERCENTAGE;
 
+	/** @var PieSegment[] */
+	private $segments = [];
+
 
 	/**
-	 * @param PieSerie $serie
+	 * @param PieSegment $segment
 	 */
-	public function addSerie(PieSerie $serie)
+	public function addSegment(PieSegment $segment)
 	{
-		$this->series[] = $serie;
+		$this->segments[] = $segment;
 	}
 
 
@@ -60,6 +63,7 @@ class PieChart extends BaseChart
 		$params                  = parent::getTemplateParameters();
 		$params['type']          = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
 		$params['dataLabelType'] = $this->dataLabelType;
+		$params['segments']      = $this->segments;
 
 		return $params;
 	}

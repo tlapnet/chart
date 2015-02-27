@@ -1,25 +1,19 @@
 <div id="{$chartId}" style="width: {!$width}; height: {!$height};">
-	<div n:if="count($series[0]->getSegments()) == 0" class="empty-chart-warning">
+	<div n:if="count($segments) == 0" class="empty-chart-warning">
 		nedostatek dat k realizaci grafu...
 	</div>
 </div>
 
 <script n:if="$type === 'pie'" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.pieRenderer.min.js"></script>
 <script n:if="$type === 'donut'" type="text/javascript" src="{$basePath}/jscripts/jqplot/plugins/jqplot.donutRenderer.min.js"></script>
-<script type="text/javascript" n:if="$series[0]->getSegments()">
+<script type="text/javascript" n:if="$segments">
 //<![CDATA[
 
 	jQuery(document).ready(function() {
-		var data = [];
-		var serie = null;
-		
-		{foreach $series as $serie}
-			serie = [];
-			{foreach $serie->getSegments() as $segment}
-				serie.push([{$segment->getTitle()}, {$segment->getValue()}]);
-			{/foreach}
-				
-			data.push(serie);
+		var data = [[]];
+
+		{foreach $segments as $segment}
+			data[0].push([{$segment->getTitle()}, {$segment->getValue()}]);
 		{/foreach}
 		
 		jQuery.jqplot({$chartId}, data, {
