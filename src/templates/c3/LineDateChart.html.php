@@ -4,6 +4,7 @@
 		x: {
 			type: 'timeseries',
 			tick: {
+				fit: false,
 				format: '%d.%m.%Y'
 			}
 		},
@@ -14,7 +15,6 @@
 		}
 	};
 	var data = {
-		//labels: true,
 		xs: {},
 		names: {},
 		colors: {},

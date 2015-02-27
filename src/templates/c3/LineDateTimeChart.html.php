@@ -4,7 +4,8 @@
 		x: {
 			type: 'timeseries',
 			tick: {
-				format: '<?php echo ($maxTime - $minTime) > 90000 ? '%d.%m %H:%M' : '%H:%M' ?>'
+				fit: false,
+				format: '%H:%M'
 			}
 		},
 		y : {
@@ -15,12 +16,16 @@
 	};
 	var data = {
 		xFormat: '%Y-%m-%d %H:%M:%S',
-		//labels: true,
 		xs: {},
 		names: {},
 		colors: {},
 		columns: []
 	};
+
+	<?php if (($maxTime - $minTime) > 90000): ?>
+		axis.x.height = 50;
+		axis.x.tick.format = '%d.%m %H:%M';
+	<?php endif ?>
 
 	<?php $i = 0 ?>
 	<?php foreach ($series as $serie): ?>

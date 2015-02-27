@@ -2,6 +2,7 @@
 <script type="text/javascript">
 	var axis = {
 		x: {
+			fit: false,
 			type: 'indexed'
 		},
 		y : {
@@ -11,7 +12,6 @@
 		}
 	};
 	var data = {
-		//labels: true,
 		xs: {},
 		names: {},
 		colors: {},
