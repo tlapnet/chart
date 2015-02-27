@@ -9,7 +9,7 @@
 <?php if ($segments): ?>
 	<script type="text/javascript">
 		var data = {
-			type : '<?php echo $type ?>',
+			type : 'pie',
 			colors: {},
 			columns: []
 		};

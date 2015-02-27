@@ -11,15 +11,9 @@ use Tlapnet\Nette\Chart\Segment\PieSegment;
  */
 class PieChart extends BaseChart
 {
-	const TYPE_PIE = 'pie';
-	const TYPE_DONUT = 'donut';
-
 	const DATA_LABEL_TYPE_VALUE = 'value';
 	const DATA_LABEL_TYPE_PERCENTAGE = 'percent';
 
-
-	/** @var string */
-	private $type = self::TYPE_PIE;
 
 	/** @var string */
 	private $dataLabelType = self::DATA_LABEL_TYPE_PERCENTAGE;
@@ -61,7 +55,6 @@ class PieChart extends BaseChart
 	protected function getTemplateParameters()
 	{
 		$params                  = parent::getTemplateParameters();
-		$params['type']          = count($this->series) > 1 ? self::TYPE_DONUT : $this->type;
 		$params['dataLabelType'] = $this->dataLabelType;
 		$params['segments']      = $this->segments;
 
