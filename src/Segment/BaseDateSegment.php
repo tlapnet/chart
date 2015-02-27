@@ -23,7 +23,6 @@ abstract class BaseDateSegment
 	 */
 	function __construct($time, $value)
 	{
-
 		if ($time instanceof DateTime) {
 			$this->dateTime = $time;
 		}

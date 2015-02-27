@@ -26,7 +26,7 @@
 			data.xs['data<?php echo $i ?>'] = 'x<?php echo $i ?>';
 		<?php endif ?>
 
-			data.names['data<?php echo $i ?>'] = '<?php echo $serie->getTitle() ?>';
+		data.names['data<?php echo $i ?>'] = '<?php echo $serie->getTitle() ?>';
 
 		<?php if ($serie->getColor() !== null): ?>
 			data.colors['data<?php echo $i ?>'] = '<?php echo $serie->getColor() ?>';
