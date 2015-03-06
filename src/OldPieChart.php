@@ -9,7 +9,7 @@ use Tlapnet\Chart\Segment\PieSegment;
 /**
  * @author Ludek Benedik
  */
-class PieChart extends BaseChart
+class OldPieChart extends BaseChart
 {
 	const DATA_LABEL_TYPE_VALUE = 'value';
 	const DATA_LABEL_TYPE_PERCENTAGE = 'percent';
