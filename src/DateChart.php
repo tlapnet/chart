@@ -2,7 +2,7 @@
 
 namespace Tlapnet\Chart;
 
-use Tlapnet\Chart\Serie\LineDateSerie;
+use Tlapnet\Chart\Serie\DateSerie;
 
 
 /**
@@ -10,22 +10,44 @@ use Tlapnet\Chart\Serie\LineDateSerie;
  */
 class DateChart extends AbstractChart
 {
+	/** @var DateSerie[] */
+	private $series = [];
+
+	/** @var array serie_index => group */
+	private $groups = [];
+
 	/** @var bool */
 	private $useTimePrecision = false;
 
+	/** @var string */
+	private $valueSuffix = '';
+
 
 	/**
-	 * @param LineDateSerie $serie
+	 * @param DateSerie $serie
+	 * @param mixed $group If NULL then serie is ungrouped
 	 */
-	public function addSerie(LineDateSerie $serie)
+	public function addSerie(DateSerie $serie, $group = null)
 	{
 		$this->series[] = $serie;
+		$this->groups[] = $group;
 	}
 
 
+	/**
+	 */
 	public function enableTimePrecision()
 	{
 		$this->useTimePrecision = true;
+	}
+
+
+	/**
+	 * @param $suffix
+	 */
+	public function setValueSuffix($suffix)
+	{
+		$this->valueSuffix = (string) $suffix;
 	}
 
 
@@ -35,7 +57,10 @@ class DateChart extends AbstractChart
 	protected function getTemplateParameters()
 	{
 		$params                     = parent::getTemplateParameters();
+		$params['series']           = $this->series;
+		$params['groups']           = $this->groups;
 		$params['useTimePrecision'] = $this->useTimePrecision;
+		$params['valueSuffix']      = $this->valueSuffix;
 		$params['minTime']          = $this->getMinTime();
 		$params['maxTime']          = $this->getMaxTime();
 
