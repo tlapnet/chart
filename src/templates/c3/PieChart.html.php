@@ -51,7 +51,7 @@
 			c3.generate({
 				bindto: '#<?php echo $chartId ?>',
 				data: data,
-				pie
+				pie: pie
 			});
 		})();
 	</script>
