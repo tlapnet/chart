@@ -24,9 +24,6 @@ class CategoryChart extends AbstractChart
 	/** @var array serie_index => group */
 	private $groups = [];
 
-	/** @var string */
-	private $valueSuffix = '';
-
 
 	/**
 	 * @param Category[] $categories
@@ -104,24 +101,14 @@ class CategoryChart extends AbstractChart
 
 
 	/**
-	 * @param $suffix
-	 */
-	public function setValueSuffix($suffix)
-	{
-		$this->valueSuffix = (string) $suffix;
-	}
-
-
-	/**
 	 * {@inheritdoc}
 	 */
 	protected function getTemplateParameters()
 	{
-		$params                = parent::getTemplateParameters();
-		$params['categories']  = $this->categories;
-		$params['series']      = $this->series;
-		$params['groups']      = $this->groups;
-		$params['valueSuffix'] = $this->valueSuffix;
+		$params               = parent::getTemplateParameters();
+		$params['categories'] = $this->categories;
+		$params['series']     = $this->series;
+		$params['groups']     = $this->groups;
 
 		return $params;
 	}

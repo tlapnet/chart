@@ -16,9 +16,6 @@ class PieChart extends AbstractChart
 	/** @var bool */
 	private $enableRatioLabel = false;
 
-	/** @var string */
-	private $valueSuffix = '';
-
 
 	/**
 	 * @param PieSegment $segment
@@ -38,15 +35,6 @@ class PieChart extends AbstractChart
 
 
 	/**
-	 * @param $suffix
-	 */
-	public function setValueSuffix($suffix)
-	{
-		$this->valueSuffix = (string) $suffix;
-	}
-
-
-	/**
 	 * {@inheritdoc}
 	 */
 	protected function getTemplateParameters()
@@ -54,7 +42,6 @@ class PieChart extends AbstractChart
 		$params                     = parent::getTemplateParameters();
 		$params['segments']         = $this->segments;
 		$params['enableRatioLabel'] = $this->enableRatioLabel;
-		$params['valueSuffix']      = $this->valueSuffix;
 
 		return $params;
 	}

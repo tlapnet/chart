@@ -19,9 +19,6 @@ class DateChart extends AbstractChart
 	/** @var bool */
 	private $useTimePrecision = false;
 
-	/** @var string */
-	private $valueSuffix = '';
-
 
 	/**
 	 * @param DateSerie $serie
@@ -43,15 +40,6 @@ class DateChart extends AbstractChart
 
 
 	/**
-	 * @param $suffix
-	 */
-	public function setValueSuffix($suffix)
-	{
-		$this->valueSuffix = (string) $suffix;
-	}
-
-
-	/**
 	 * {@inheritdoc}
 	 */
 	protected function getTemplateParameters()
@@ -60,7 +48,6 @@ class DateChart extends AbstractChart
 		$params['series']           = $this->series;
 		$params['groups']           = $this->groups;
 		$params['useTimePrecision'] = $this->useTimePrecision;
-		$params['valueSuffix']      = $this->valueSuffix;
 		$params['minTime']          = $this->getMinTime();
 		$params['maxTime']          = $this->getMaxTime();
 

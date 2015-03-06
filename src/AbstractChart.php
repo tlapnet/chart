@@ -19,6 +19,18 @@ abstract class AbstractChart
 	/** @var string CSS value */
 	private $height = 'auto';
 
+	/** @var string */
+	private $valueSuffix = '';
+
+
+	/**
+	 * @param $suffix
+	 */
+	public function setValueSuffix($suffix)
+	{
+		$this->valueSuffix = (string) $suffix;
+	}
+
 
 	/**
 	 * @return string
@@ -48,9 +60,10 @@ abstract class AbstractChart
 	protected function getTemplateParameters()
 	{
 		return [
-			'chartId' => 'tlapnet-chart-' . self::$rendersCount++,
-			'width'   => $this->width,
-			'height'  => $this->height,
+			'chartId'     => 'tlapnet-chart-' . self::$rendersCount++,
+			'width'       => $this->width,
+			'height'      => $this->height,
+			'valueSuffix' => $this->valueSuffix,
 		];
 	}
 

@@ -16,9 +16,6 @@ class Chart extends AbstractChart
 	/** @var array serie_index => group */
 	private $groups = [];
 
-	/** @var string */
-	private $valueSuffix = '';
-
 
 	/**
 	 * @param Serie $serie
@@ -32,23 +29,13 @@ class Chart extends AbstractChart
 
 
 	/**
-	 * @param $suffix
-	 */
-	public function setValueSuffix($suffix)
-	{
-		$this->valueSuffix = (string) $suffix;
-	}
-
-
-	/**
 	 * {@inheritdoc}
 	 */
 	protected function getTemplateParameters()
 	{
-		$params                = parent::getTemplateParameters();
-		$params['series']      = $this->series;
-		$params['groups']      = $this->groups;
-		$params['valueSuffix'] = $this->valueSuffix;
+		$params           = parent::getTemplateParameters();
+		$params['series'] = $this->series;
+		$params['groups'] = $this->groups;
 
 		return $params;
 	}
