@@ -30,20 +30,20 @@ abstract class BaseSerie
 
 
 	/**
-	 * @return string
-	 */
-	public function getTitle()
-	{
-		return $this->title;
-	}
-
-
-	/**
 	 * @return array
 	 */
 	public function getSegments()
 	{
 		return $this->segments;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getTitle()
+	{
+		return $this->title;
 	}
 
 
