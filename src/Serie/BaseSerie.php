@@ -12,10 +12,21 @@ abstract class BaseSerie
 	protected $segments = array();
 
 	/** @var null|string Css color */
-	protected $color = null;
+	private $color = null;
 
 	/** @var null|string */
-	protected $title = null;
+	private $title = null;
+
+
+	/**
+	 * @param string $title
+	 * @param string|null $color
+	 */
+	function __construct($title, $color = null)
+	{
+		$this->title = (string) $title;
+		$this->color = $color === null ? null : (string) $color;
+	}
 
 
 	/**
@@ -37,40 +48,10 @@ abstract class BaseSerie
 
 
 	/**
-	 */
-	public function clear()
-	{
-		$this->segments = array();
-	}
-
-
-	/**
 	 * @return null|string
 	 */
 	public function getColor()
 	{
 		return $this->color;
-	}
-
-
-	/**
-	 * @param null|string $color
-	 * @return static
-	 */
-	public function setColor($color)
-	{
-		$this->color = $color;
-		return $this;
-	}
-
-
-	/**
-	 * @param null|string $title
-	 * @return static
-	 */
-	public function setTitle($title)
-	{
-		$this->title = $title;
-		return $this;
 	}
 }

@@ -6,6 +6,8 @@
  * Zruseni tridy PieSerie, metody PieChart::addSerie() a pridani metody PieChart::addSegment()
  * Zruseni metod BarChart::setShowStackSum() a BarChart::setSumFormatCallback()
  * Zruseni metod BarSerie::isSumSerie() a BarSerie::getPointLabels()
+ * Zruseni metod BaseSerie::sedTitle() a BaseSerie::setColor()
+ * Pridani konstruktoru BaseSerie::__construct($title, $color = null)
 
 
 # TODO

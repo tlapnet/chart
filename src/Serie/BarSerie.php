@@ -11,15 +11,6 @@ use Tlapnet\Nette\Chart\Segment\BarSegment;
 class BarSerie extends BaseSerie
 {
 	/**
-	 * @param string $title
-	 */
-	public function __construct($title)
-	{
-		$this->title = (string) $title;
-	}
-
-
-	/**
 	 * @param BarSegment $segment
 	 */
 	public function addSegment(BarSegment $segment)

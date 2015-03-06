@@ -11,7 +11,7 @@ use Tlapnet\Nette\Chart\Segment\LineDateTimeSegment;
 class LineDateTimeSerie extends BaseSerie
 {
 	/** @var int */
-	private $minTime = 999999999999999;
+	private $minTime = PHP_INT_MAX;
 
 	/** @var int */
 	private $maxTime = 0;
