@@ -14,10 +14,11 @@
 <div id="<?php echo $chartId ?>" style="width: <?php echo $width ?>; height: <?php echo $height ?>;"></div>
 <script type="text/javascript">
 	(function() {
+		'use strict';
+
 		var valueFormatter = function(value) {
 			return (value + '').replace(/(\d)(?=(\d{3})+(\.|$))/g, '$1 ').replace('.', ',') + '<?php echo $valueSuffix ?>';
-		}
-
+		};
 		var axis = {
 			x: {
 				type: 'timeseries',

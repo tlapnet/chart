@@ -25,10 +25,10 @@ class DateSerie extends AbstractSerie
 	 */
 	public function addSegment(DateSegment $segment)
 	{
-		$t = $segment->getDate()->format('U');
+		$time = $segment->getDate()->getTimestamp();
 
-		$this->minTime = min($this->minTime, $t);
-		$this->maxTime = max($this->maxTime, $t);
+		$this->minTime = min($this->minTime, $time);
+		$this->maxTime = max($this->maxTime, $time);
 
 		$this->segments[] = $segment;
 	}
