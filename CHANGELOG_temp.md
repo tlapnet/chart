@@ -6,9 +6,13 @@
  * Zruseni tridy PieSerie, metody PieChart::addSerie() a pridani metody PieChart::addSegment()
  * Zruseni metod BarChart::setShowStackSum() a BarChart::setSumFormatCallback()
  * Zruseni metod BarSerie::isSumSerie() a BarSerie::getPointLabels()
- * Zruseni metod BaseSerie::sedTitle() a BaseSerie::setColor()
  * Pridani konstruktoru BaseSerie::__construct($title, $color = null)
-
+ * Zruseni metod BaseSerie::sedTitle() a BaseSerie::setColor()
+ * Zruseni tridy BaseDateSegment
+ * Tridu LineDateTimeSegment nahrazuje LineDateSegment
+ * Tridu LineDateTimeSerie nahrazuje LineDateSerie
+ * Tridu LineDateTimeChart nahrazuje LineDateChart + zavolani metody LineDateChart::enableTimePrecision()
+ * Prejmenovani metody LineDateSegment::getDateTime() to LineDateSegment::getDate()
 
 # TODO
 

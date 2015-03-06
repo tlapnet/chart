@@ -15,11 +15,23 @@
 		}
 	};
 	var data = {
+		xFormat: '%Y-%m-%d',
 		xs: {},
 		names: {},
 		colors: {},
 		columns: []
 	};
+
+	<?php if ($useTimePrecision): ?>
+		data.xFormat = '%Y-%m-%d %H:%M:%S';
+
+		<?php if (($maxTime - $minTime) > 90000): ?>
+			axis.x.height = 50;
+			axis.x.tick.format = '%d.%m %H:%M';
+		<?php else: ?>
+			axis.x.tick.format = '%H:%M';
+		<?php endif ?>
+	<?php endif ?>
 
 	<?php $i = 0 ?>
 	<?php foreach ($series as $serie): ?>
@@ -36,7 +48,7 @@
 		var columnY = ['data<?php echo $i ?>'];
 
 		<?php foreach ($serie->getSegments() as $segment): ?>
-			columnX.push('<?php echo $segment->getDateTime()->format('Y-m-d') ?>');
+			columnX.push('<?php echo $segment->getDate()->format($useTimePrecision ? 'Y-m-d H:i:s' : 'Y-m-d') ?>');
 			columnY.push(<?php echo $segment->getValue() ?>);
 		<?php endforeach ?>
 
