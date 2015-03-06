@@ -46,20 +46,20 @@
 		<?php $groupedDataNames = [] ?>
 		<?php foreach ($series as $serieIndex => $serie): ?>
 			<?php $i++ ?>
-			<?php $dataName = 'data' . $i ?>
+			<?php $colY = 'y' . $i ?>
 
 			<?php if ($groups[$serieIndex] !== null): ?>
-				<?php $groupedDataNames[$groups[$serieIndex]][] = $dataName ?>
+				<?php $groupedDataNames[$groups[$serieIndex]][] = $colY ?>
 			<?php endif ?>
 
-			data.types['<?php echo $dataName ?>'] = '<?php echo str_replace('_', '-', $serie->getType()) ?>';
-			data.names['<?php echo $dataName ?>'] = '<?php echo $serie->getTitle() ?>';
+			data.types['<?php echo $colY ?>'] = '<?php echo str_replace('_', '-', $serie->getType()) ?>';
+			data.names['<?php echo $colY ?>'] = '<?php echo $serie->getTitle() ?>';
 
 			<?php if ($serie->getColor() !== null): ?>
-				data.colors['<?php echo $dataName ?>'] = '<?php echo $serie->getColor() ?>';
+				data.colors['<?php echo $colY ?>'] = '<?php echo $serie->getColor() ?>';
 			<?php endif ?>
 
-			var columnY = ['<?php echo $dataName ?>'];
+			var columnY = ['<?php echo $colY ?>'];
 
 			<?php foreach ($serie->getSegments() as $segment): ?>
 				columnY.push(<?php echo $segment->getValue() ?>);
