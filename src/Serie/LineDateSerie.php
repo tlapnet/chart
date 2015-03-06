@@ -1,8 +1,8 @@
 <?php
 
-namespace Tlapnet\Nette\Chart\Serie;
+namespace Tlapnet\Chart\Serie;
 
-use Tlapnet\Nette\Chart\Segment\LineDateSegment;
+use Tlapnet\Chart\Segment\LineDateSegment;
 
 
 /**

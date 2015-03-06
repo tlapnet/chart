@@ -1,11 +1,11 @@
 <?php
 
-namespace Tlapnet\Nette\Chart;
+namespace Tlapnet\Chart;
 
 use LogicException;
-use Tlapnet\Nette\Chart\Segment\BarSegment;
-use Tlapnet\Nette\Chart\Serie\BarSerie;
-use Tlapnet\Nette\Chart\Util\SeriesValidator;
+use Tlapnet\Chart\Segment\BarSegment;
+use Tlapnet\Chart\Serie\BarSerie;
+use Tlapnet\Chart\Util\SeriesValidator;
 
 
 /**

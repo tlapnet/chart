@@ -1,9 +1,9 @@
 <?php
 
-namespace Tlapnet\Nette\Chart;
+namespace Tlapnet\Chart;
 
-use Tlapnet\Nette\Chart\Serie\LineSerie;
-use Tlapnet\Nette\Chart\Util\SeriesValidator;
+use Tlapnet\Chart\Serie\LineSerie;
+use Tlapnet\Chart\Util\SeriesValidator;
 
 
 /**

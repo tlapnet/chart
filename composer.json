@@ -26,12 +26,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Tlapnet\\Nette\\Chart\\": "src/"
+			"Tlapnet\\Chart\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Tlapnet\\Nette\\Chart\\Tests\\": "tests/"
+			"Tlapnet\\Chart\\Tests\\": "tests/"
 		}
 	},
 	"minimum-stability": "dev",

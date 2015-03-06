@@ -1,9 +1,9 @@
 <?php
 
-namespace Tlapnet\Nette\Chart;
+namespace Tlapnet\Chart;
 
 use LogicException;
-use Tlapnet\Nette\Chart\Segment\PieSegment;
+use Tlapnet\Chart\Segment\PieSegment;
 
 
 /**

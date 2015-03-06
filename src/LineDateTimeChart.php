@@ -1,8 +1,8 @@
 <?php
 
-namespace Tlapnet\Nette\Chart;
+namespace Tlapnet\Chart;
 
-use Tlapnet\Nette\Chart\Serie\LineDateTimeSerie;
+use Tlapnet\Chart\Serie\LineDateTimeSerie;
 
 
 /**

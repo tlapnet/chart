@@ -1,9 +1,9 @@
 <?php
 
-namespace Tlapnet\Nette\Chart\Util;
+namespace Tlapnet\Chart\Util;
 
 use LogicException;
-use Tlapnet\Nette\Chart\Serie\BaseSerie;
+use Tlapnet\Chart\Serie\BaseSerie;
 
 
 /**

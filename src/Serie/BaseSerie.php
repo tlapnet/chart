@@ -1,6 +1,6 @@
 <?php
 
-namespace Tlapnet\Nette\Chart\Serie;
+namespace Tlapnet\Chart\Serie;
 
 
 /**

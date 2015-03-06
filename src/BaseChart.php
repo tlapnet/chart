@@ -1,9 +1,9 @@
 <?php
 
-namespace Tlapnet\Nette\Chart;
+namespace Tlapnet\Chart;
 
 use ReflectionClass;
-use Tlapnet\Nette\Chart\Serie\BaseSerie;
+use Tlapnet\Chart\Serie\BaseSerie;
 
 
 /**

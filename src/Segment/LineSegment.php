@@ -1,6 +1,6 @@
 <?php
 
-namespace Tlapnet\Nette\Chart\Segment;
+namespace Tlapnet\Chart\Segment;
 
 use LogicException;
 
