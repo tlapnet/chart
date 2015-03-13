@@ -10,20 +10,27 @@
 	<script src="/path/to/c3.min.js"></script>
 
 
-## Category Chart
+## Available charts
 
-### Serie types
-
- * CategorySerie::AREA
- * CategorySerie::AREA_SPLINE
- * CategorySerie::AREA_STEP
- * CategorySerie::BAR
- * CategorySerie::LINE
- * CategorySerie::SPLINE
- * CategorySerie::STEP
+ * Chart - x: float, y: float
+ * CategoryChart - x: string (key), y: float
+ * DateChart - x: DateTime, y: float
+ * PieChart
+ * DonutChart
 
 
-### Usage
+### Chart, CategoryChart and DateChart serie types
+
+ * area
+ * area spline
+ * area step
+ * bar
+ * line
+ * spline
+ * step
+
+
+### CategoryChart
 
 	use Nette\Chart\Category;
 	use Nette\Chart\CategoryChart;
@@ -45,7 +52,7 @@
 
 	$serie = new CategorySerie(CategorySerie::BAR, 'Company 2', 'green');
 	$serie->addSegment(new CategorySegment(1, 3000));
-	// We can skip segment for any category. What more
+	// We can skip segment for any category (default falue is zero)
 	$serie->addSegment(new CategorySegment(3, 500));
 	$chart->addSerie($serie, 'group1');
 
