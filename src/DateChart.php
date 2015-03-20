@@ -22,7 +22,7 @@ class DateChart extends AbstractChart
 
 	/**
 	 * @param DateSerie $serie
-	 * @param mixed $group If NULL then serie is ungrouped
+	 * @param mixed $group Valid PHP array key. If NULL then serie is ungrouped
 	 */
 	public function addSerie(DateSerie $serie, $group = null)
 	{

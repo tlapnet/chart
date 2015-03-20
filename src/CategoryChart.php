@@ -56,7 +56,7 @@ class CategoryChart extends AbstractChart
 
 	/**
 	 * @param CategorySerie $serie
-	 * @param mixed $group If NULL then serie is ungrouped
+	 * @param mixed $group Valid PHP array key. If NULL then serie is ungrouped
 	 */
 	public function addSerie(CategorySerie $serie, $group = null)
 	{
