@@ -3,6 +3,7 @@
 namespace Tlapnet\Chart;
 
 use ReflectionClass;
+use Tlapnet\Chart\Util\C3Adapter;
 
 
 /**
@@ -60,6 +61,7 @@ abstract class AbstractChart
 	protected function getTemplateParameters()
 	{
 		return [
+			'c3Adapter'   => new C3Adapter(),
 			'chartId'     => 'tlapnet-chart-' . self::$rendersCount++,
 			'width'       => $this->width,
 			'height'      => $this->height,

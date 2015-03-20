@@ -7,6 +7,7 @@
  * @var array $groups serie_index => string|null
  * @var Tlapnet\Chart\Serie\CategorySerie[] $series
  * @var Tlapnet\Chart\Category[] $categories
+ * @var Tlapnet\Chart\Util\C3Adapter $c3Adapter
  */
 ?>
 <div id="<?php echo $chartId ?>" style="width: <?php echo $width ?>; height: <?php echo $height ?>;"></div>
@@ -53,7 +54,7 @@
 				<?php $groupedDataNames[$groups[$serieIndex]][] = $colY ?>
 			<?php endif ?>
 
-			data.types['<?php echo $colY ?>'] = '<?php echo str_replace('_', '-', $serie->getType()) ?>';
+			data.types['<?php echo $colY ?>'] = '<?php echo $c3Adapter->getSerieType($serie->getType()) ?>';
 			data.names['<?php echo $colY ?>'] = '<?php echo $serie->getTitle() ?>';
 
 			<?php if ($serie->getColor() !== null): ?>

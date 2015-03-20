@@ -10,7 +10,7 @@ use InvalidArgumentException;
  */
 abstract class AbstractSerie
 {
-	const AREA        = 'area';
+	const AREA_LINE   = 'area_line';
 	const AREA_SPLINE = 'area_spline';
 	const AREA_STEP   = 'area_step';
 	const BAR         = 'bar';
@@ -30,9 +30,11 @@ abstract class AbstractSerie
 
 
 	/**
+	 * @see Color names http://www.w3schools.com/cssref/css_colornames.asp
+	 *
 	 * @param string $type bar|line
 	 * @param string $title
-	 * @param string|null $color
+	 * @param string|null $color Valid CSS color
 	 */
 	function __construct($type, $title, $color = null)
 	{
@@ -50,7 +52,7 @@ abstract class AbstractSerie
 	 */
 	private function assertType($type)
 	{
-		static $allowedTypes = [self::AREA, self::AREA_SPLINE, self::AREA_STEP, self::BAR, self::LINE, self::SPLINE, self::STEP];
+		static $allowedTypes = [self::AREA_LINE, self::AREA_SPLINE, self::AREA_STEP, self::BAR, self::LINE, self::SPLINE, self::STEP];
 
 		if (!in_array($type, $allowedTypes)) {
 			throw new InvalidArgumentException(sprintf('Undefined type "%s".', $type));
