@@ -27,7 +27,8 @@ class DateSegment
 			$this->date = $date;
 		}
 		elseif (is_numeric($date)) {
-			$this->date = new DateTime("@$date");
+			$this->date = new DateTime();
+			$this->date->setTimestamp($date);
 		}
 		else {
 			$this->date = new DateTime($date);
