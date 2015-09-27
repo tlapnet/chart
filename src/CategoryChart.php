@@ -49,7 +49,7 @@ class CategoryChart extends AbstractChart
 		$uniqueKeys = array_unique($this->categoryKeys);
 
 		if (count($this->categoryKeys) !== count($uniqueKeys)) {
-			throw new LogicException("Category keys have to by unigue.");
+			throw new LogicException("Category keys have to be unigue.");
 		}
 	}
 
