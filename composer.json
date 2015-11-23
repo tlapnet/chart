@@ -2,7 +2,7 @@
 	"name": "tlapnet/chart",
 	"dist": {
 		"type": "vcs",
-		"url": "ssh://git@git.tlapnet.cz:10022/libs/chart.git"
+		"url": "ssh://git@git.tlapnet.cz/libs/chart.git"
 	},
 	"repositories": [
 		{
