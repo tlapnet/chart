@@ -1,42 +1,37 @@
 {
-	"name": "tlapnet/chart",
-	"dist": {
-		"type": "vcs",
-		"url": "ssh://git@git.tlapnet.cz/libs/chart.git"
-	},
-	"repositories": [
-		{
-			"packagist": false
-		},
-		{
-			"type": "composer",
-			"url": "http://deployer:D1load@composer.tlapnet.cz/api/packages/"
-		}
-	],
-	"authors": [
-		{
-			"name": "Ludek Benedik",
-			"email": "lb@ludekbenedik.com"
-		}
-	],
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "4.2.*"
-	},
-	"autoload": {
-		"psr-4": {
-			"Tlapnet\\Chart\\": "src/"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Tlapnet\\Chart\\Tests\\": "tests/"
-		}
-	},
-	"minimum-stability": "dev",
-	"archive": {
-		"exclude": ["*.ipr", "*.iws", "*.iml", ".idea", "*.md", "/docs", "/application/docs", "/application/vendor", "/application/temp/*", "/application/log/*", "!/application/log/pda"]
-	}
+    "name": "tlapnet/chart",
+    "dist": {
+        "type": "vcs",
+        "url": "ssh://git@git.tlapnet.cz/libs/chart.git"
+    },
+    "repositories": {
+        "type": "composer",
+        "url": "https://packagist.tlapnet.cz/"
+    },
+    "authors": [
+        {
+            "name": "Tlapnet",
+            "email": "webmaster@tlapnet.cz",
+            "homepage": "www.tlapnet.cz"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tlapnet\\Chart\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tlapnet\\Chart\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "license": "proprietary"
 }
