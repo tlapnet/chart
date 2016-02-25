@@ -11,8 +11,7 @@
     "authors": [
         {
             "name": "Tlapnet",
-            "email": "webmaster@tlapnet.cz",
-            "homepage": "www.tlapnet.cz"
+            "email": "webmaster@tlapnet.cz"
         }
     ],
     "require": {
