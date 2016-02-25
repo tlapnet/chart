@@ -4,10 +4,12 @@
         "type": "vcs",
         "url": "ssh://git@git.tlapnet.cz/libs/chart.git"
     },
-    "repositories": {
-        "type": "composer",
-        "url": "https://packagist.tlapnet.cz/"
-    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.tlapnet.cz/"
+        }
+    ],
     "authors": [
         {
             "name": "Tlapnet",
