@@ -1,15 +1,5 @@
 {
     "name": "tlapnet/chart",
-    "dist": {
-        "type": "vcs",
-        "url": "ssh://git@git.tlapnet.cz/libs/chart.git"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packagist.tlapnet.cz/"
-        }
-    ],
     "authors": [
         {
             "name": "Tlapnet",
@@ -34,5 +24,11 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "license": "proprietary"
+    "license": "proprietary",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.tlapnet.cz/"
+        }
+    ]
 }
