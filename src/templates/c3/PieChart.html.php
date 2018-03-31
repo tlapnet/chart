@@ -48,11 +48,12 @@
 				data.columns.push(column);
 			<?php endforeach ?>
 
-			c3.generate({
+			var chart = c3.generate({
 				bindto: '#<?php echo $chartId ?>',
 				data: data,
 				pie: pie
 			});
+			$('#<?php echo $chartId ?>').data('c3-chart', chart);
 		})();
 	</script>
 <?php endif ?>

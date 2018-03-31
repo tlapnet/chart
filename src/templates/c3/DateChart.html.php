@@ -99,7 +99,7 @@
 			data.groups.push(group);
 		<?php endforeach ?>
 
-		c3.generate({
+		var chart = c3.generate({
 			bindto: '#<?php echo $chartId ?>',
 			grid: {
 				x: {
@@ -112,5 +112,6 @@
 			axis: axis,
 			data: data
 		});
+		$('#<?php echo $chartId ?>').data('c3-chart', chart);
 	})();
 </script>
