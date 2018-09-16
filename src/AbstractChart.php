@@ -1,17 +1,15 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart;
 
+use LogicException;
 use ReflectionClass;
 use Tlapnet\Chart\Util\C3Adapter;
 
-
-/**
- * @author Ludek Benedik
- */
 abstract class AbstractChart
 {
-	/** @var string CSS value */
+
+	/** @var int CSS value */
 	private static $rendersCount = 0;
 
 	/** @var string CSS value */
@@ -23,68 +21,52 @@ abstract class AbstractChart
 	/** @var string */
 	private $valueSuffix = '';
 
-
-	/**
-	 * @param $suffix
-	 */
-	public function setValueSuffix($suffix)
+	public function setValueSuffix(string $suffix): void
 	{
-		$this->valueSuffix = (string) $suffix;
+		$this->valueSuffix = $suffix;
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function __toString()
+	public function __toString(): string
 	{
 		return $this->render();
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function render()
+	public function render(): string
 	{
 		extract($this->getTemplateParameters());
 		ob_start();
 		require $this->getTemplateFile();
 
-		return ob_get_clean();
+		return (string) ob_get_clean();
 	}
 
-
 	/**
-	 * @return array
+	 * @return mixed[]
 	 */
-	protected function getTemplateParameters()
+	protected function getTemplateParameters(): array
 	{
 		return [
-			'c3Adapter'   => new C3Adapter(),
-			'chartId'     => 'tlapnet-chart-' . self::$rendersCount++,
-			'width'       => $this->width,
-			'height'      => $this->height,
+			'c3Adapter' => new C3Adapter(),
+			'chartId' => 'tlapnet-chart-' . self::$rendersCount++,
+			'width' => $this->width,
+			'height' => $this->height,
 			'valueSuffix' => $this->valueSuffix,
 		];
 	}
 
-
-	/**
-	 * @return string
-	 */
-	private function getTemplateFile()
+	private function getTemplateFile(): string
 	{
-		$classRefl  = new ReflectionClass($this);
-		$classDir   = dirname($classRefl->getFileName());
-		$classShort = $classRefl->getShortName();
+		$classReflection = new ReflectionClass($this);
+		$classDir = dirname($classReflection->getFileName());
+		$classShort = $classReflection->getShortName();
 
-		$file = "$classDir/templates/c3/$classShort.html.php";
+		$file = sprintf('%s/templates/c3/%s.phtml', $classDir, $classShort);
 
 		if (!file_exists($file)) {
-			throw new \LogicException(sprintf('Template file for "%s" not found.', $classShort));
+			throw new LogicException(sprintf('Template file for "%s" not found.', $classShort));
 		}
 
 		return $file;
 	}
+
 }

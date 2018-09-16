@@ -1,0 +1,11 @@
+includes:
+	- temp/phpstan/vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- temp/phpstan/vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+	ignoreErrors:
+		# Cannot happen
+		- '#^Parameter \#1 \$unixtimestamp of method DateTimeImmutable\:\:setTimestamp\(\) expects int, int\|string given\.$#'
+		# Extract has a reason here
+		- '#^Parameter \#1 \$var_array of function extract is passed by reference, so it expects variables only\.$#'
+		- '#^Parameter \#1 \$path of function dirname expects string, string\|false given\.$#'

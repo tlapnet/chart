@@ -1,11 +1,8 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Segment;
 
-
-/**
- * @author Ludek Benedik
- */
 class DonutSegment extends PieSegment
 {
+
 }

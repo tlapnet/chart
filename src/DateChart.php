@@ -1,66 +1,53 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart;
 
 use Tlapnet\Chart\Serie\DateSerie;
 
-
-/**
- * @author Ludek Benedik
- */
 class DateChart extends AbstractChart
 {
+
 	/** @var DateSerie[] */
 	private $series = [];
 
-	/** @var array serie_index => group */
+	/** @var mixed[] serie_index => group */
 	private $groups = [];
 
 	/** @var bool */
 	private $useTimePrecision = false;
 
-
 	/**
-	 * @param DateSerie $serie
 	 * @param mixed $group Valid PHP array key. If NULL then serie is ungrouped
 	 */
-	public function addSerie(DateSerie $serie, $group = null)
+	public function addSerie(DateSerie $serie, $group = null): void
 	{
 		$this->series[] = $serie;
 		$this->groups[] = $group;
 	}
 
-
-	/**
-	 */
-	public function enableTimePrecision()
+	public function enableTimePrecision(): void
 	{
 		$this->useTimePrecision = true;
 	}
 
-
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function getTemplateParameters()
+	protected function getTemplateParameters(): array
 	{
-		$params                     = parent::getTemplateParameters();
-		$params['series']           = $this->series;
-		$params['groups']           = $this->groups;
+		$params = parent::getTemplateParameters();
+		$params['series'] = $this->series;
+		$params['groups'] = $this->groups;
+		$params['minTime'] = $this->getMinTime();
+		$params['maxTime'] = $this->getMaxTime();
 		$params['useTimePrecision'] = $this->useTimePrecision;
-		$params['minTime']          = $this->getMinTime();
-		$params['maxTime']          = $this->getMaxTime();
 
 		return $params;
 	}
 
-
-	/**
-	 * @return int
-	 */
-	private function getMinTime()
+	private function getMinTime(): int
 	{
-		$min = array();
+		$min = [];
 
 		foreach ($this->series as $serie) {
 			$min[] = $serie->getMinTime();
@@ -69,13 +56,9 @@ class DateChart extends AbstractChart
 		return min($min);
 	}
 
-
-	/**
-	 * @return int
-	 */
-	private function getMaxTime()
+	private function getMaxTime(): int
 	{
-		$max = array();
+		$max = [];
 
 		foreach ($this->series as $serie) {
 			$max[] = $serie->getMaxTime();
@@ -83,4 +66,5 @@ class DateChart extends AbstractChart
 
 		return max($max);
 	}
+
 }

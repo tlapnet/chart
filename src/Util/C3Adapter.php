@@ -1,20 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Util;
 
 use Tlapnet\Chart\Serie\AbstractSerie;
 
-
-/**
- * @author Ludek Benedik
- */
 class C3Adapter
 {
-	/**
-	 * @param string $libraryType
-	 * @return string
-	 */
-	public function getSerieType($libraryType)
+
+	public function getSerieType(string $libraryType): string
 	{
 		$bridge = [
 			AbstractSerie::AREA_LINE => 'area',
@@ -26,4 +19,5 @@ class C3Adapter
 
 		return str_replace('_', '-', $libraryType);
 	}
+
 }

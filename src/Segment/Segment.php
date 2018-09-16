@@ -1,47 +1,32 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Segment;
 
-use LogicException;
-
-
-/**
- * @author Ludek Benedik
- */
 class Segment
 {
+
 	/** @var float */
 	private $x;
 
 	/** @var float */
 	private $y;
 
-
-	/**
-	 * @param float $x
-	 * @param float $y
-	 */
-	function __construct($x, $y)
+	public function __construct(float $x, float $y)
 	{
-		$this->x = (float) $x;
-		$this->y = (float) $y;
+		$this->x = $x;
+		$this->y = $y;
 	}
 
 
-	/**
-	 * @return float
-	 */
-	public function getX()
+	public function getX(): float
 	{
 		return $this->x;
 	}
 
 
-	/**
-	 * @return float
-	 */
-	public function getY()
+	public function getY(): float
 	{
 		return $this->y;
 	}
+
 }

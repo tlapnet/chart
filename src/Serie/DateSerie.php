@@ -1,15 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Serie;
 
 use Tlapnet\Chart\Segment\DateSegment;
 
-
-/**
- * @author Ludek Benedik
- */
 class DateSerie extends AbstractSerie
 {
+
 	/** @var DateSegment[] */
 	private $segments = [];
 
@@ -19,11 +16,7 @@ class DateSerie extends AbstractSerie
 	/** @var int */
 	private $maxTime = 0;
 
-
-	/**
-	 * @param DateSegment $segment
-	 */
-	public function addSegment(DateSegment $segment)
+	public function addSegment(DateSegment $segment): void
 	{
 		$time = $segment->getDate()->getTimestamp();
 
@@ -33,30 +26,28 @@ class DateSerie extends AbstractSerie
 		$this->segments[] = $segment;
 	}
 
-
 	/**
 	 * @return DateSegment[]
 	 */
-	public function getSegments()
+	public function getSegments(): array
 	{
 		return $this->segments;
 	}
 
-
 	/**
 	 * @return int Timestamp
 	 */
-	public function getMinTime()
+	public function getMinTime(): int
 	{
 		return $this->minTime;
 	}
 
-
 	/**
 	 * @return int Timestamp
 	 */
-	public function getMaxTime()
+	public function getMaxTime(): int
 	{
 		return $this->maxTime;
 	}
+
 }

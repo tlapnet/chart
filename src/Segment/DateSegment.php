@@ -1,57 +1,44 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Segment;
 
-use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 
-
-/**
- * @author Ludek Benedik
- */
 class DateSegment
 {
-	/** @var DateTime */
+
+	/** @var DateTimeInterface */
 	private $date;
 
 	/** @var float */
 	private $value;
 
-
 	/**
-	 * @param DateTime|int|string $date
-	 * @param float $value
+	 * @param DateTimeInterface|int|string $date
 	 */
-	function __construct($date, $value)
+	public function __construct($date, float $value)
 	{
-		if ($date instanceof DateTime) {
+		if ($date instanceof DateTimeInterface) {
 			$this->date = $date;
-		}
-		elseif (is_numeric($date)) {
-			$this->date = new DateTime();
+		} elseif (is_numeric($date)) {
+			$this->date = new DateTimeImmutable();
 			$this->date->setTimestamp($date);
-		}
-		else {
-			$this->date = new DateTime($date);
+		} else {
+			$this->date = new DateTimeImmutable($date);
 		}
 
-		$this->value = (float) $value;
+		$this->value = $value;
 	}
 
-
-	/**
-	 * @return DateTime
-	 */
-	public function getDate()
+	public function getDate(): DateTimeInterface
 	{
 		return $this->date;
 	}
 
-
-	/**
-	 * @return float
-	 */
-	public function getValue()
+	public function getValue(): float
 	{
 		return $this->value;
 	}
+
 }
