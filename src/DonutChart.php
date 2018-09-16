@@ -1,15 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart;
 
 use Tlapnet\Chart\Segment\DonutSegment;
 
-
-/**
- * @author Ludek Benedik
- */
 class DonutChart extends AbstractChart
 {
+
 	/** @var DonutSegment[] */
 	private $segments = [];
 
@@ -19,43 +16,32 @@ class DonutChart extends AbstractChart
 	/** @var bool */
 	private $enableRatioLabel = false;
 
-
-	/**
-	 * @param DonutSegment $segment
-	 */
-	public function addSegment(DonutSegment $segment)
+	public function addSegment(DonutSegment $segment): void
 	{
 		$this->segments[] = $segment;
 	}
 
-
-	/**
-	 * @param string $title
-	 */
-	public function setTitle($title)
+	public function setTitle(string $title): void
 	{
-		$this->title = (string) $title;
+		$this->title = $title;
 	}
 
-
-	/**
-	 */
-	public function enableRatioLabel()
+	public function enableRatioLabel(): void
 	{
 		$this->enableRatioLabel = true;
 	}
 
-
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function getTemplateParameters()
+	protected function getTemplateParameters(): array
 	{
-		$params                     = parent::getTemplateParameters();
-		$params['segments']         = $this->segments;
-		$params['title']            = $this->title;
+		$params = parent::getTemplateParameters();
+		$params['title'] = $this->title;
+		$params['segments'] = $this->segments;
 		$params['enableRatioLabel'] = $this->enableRatioLabel;
 
 		return $params;
 	}
+
 }

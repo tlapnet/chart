@@ -1,45 +1,30 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Segment;
 
-
-/**
- * @author Ludek Benedik
- */
 class CategorySegment
 {
+
 	/** @var string */
 	private $key;
 
 	/** @var float */
 	private $value;
 
-
-	/**
-	 * @param string $key
-	 * @param float $value
-	 */
-	function __construct($key, $value)
+	public function __construct(string $key, float $value)
 	{
-		$this->key   = (string) $key;
-		$this->value = (float) $value;
+		$this->key = $key;
+		$this->value = $value;
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function getKey()
+	public function getKey(): string
 	{
 		return $this->key;
 	}
 
-
-	/**
-	 * @return float
-	 */
-	public function getValue()
+	public function getValue(): float
 	{
 		return $this->value;
 	}
+
 }

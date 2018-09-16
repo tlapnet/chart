@@ -1,33 +1,26 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Serie;
 
 use Tlapnet\Chart\Segment\Segment;
 
-
-/**
- * @author Ludek Benedik
- */
 class Serie extends AbstractSerie
 {
+
 	/** @var Segment[] */
 	private $segments = [];
 
-
-	/**
-	 * @param Segment $segment
-	 */
-	public function addSegment(Segment $segment)
+	public function addSegment(Segment $segment): void
 	{
 		$this->segments[] = $segment;
 	}
 
-
 	/**
 	 * @return Segment[]
 	 */
-	public function getSegments()
+	public function getSegments(): array
 	{
 		return $this->segments;
 	}
+
 }

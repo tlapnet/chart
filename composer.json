@@ -1,34 +1,57 @@
 {
-    "name": "tlapnet/chart",
-    "authors": [
-        {
-            "name": "Tlapnet",
-            "email": "webmaster@tlapnet.cz"
-        }
+  "name": "tlapnet/chart",
+  "description": "Graphs and charts based on C3.js",
+  "type": "library",
+  "license": "MPL-2.0",
+  "homepage": "https://github.com/tlapnet/chart",
+  "authors": [
+    {
+      "name": "Luděk Benedík"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "require-dev": {
+    "ninjify/qa": "^0.8.0",
+    "phpunit/phpunit": "^7.3.5"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Tlapnet\\Chart\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tlapnet\\Chart\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "qa": [
+      "linter src tests",
+      "codesniffer src tests"
     ],
-    "require": {
-        "php": ">=5.4.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.2.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Tlapnet\\Chart\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tlapnet\\Chart\\Tests\\": "tests/"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "license": "proprietary",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packagist.ispalliance.cz/"
-        }
+    "phpunit": [
+      "phpunit tests --colors=always"
+    ],
+    "coverage": [
+      "phpunit tests --colors=always -c tests/coverage.xml"
+    ],
+    "phpstan-install": [
+      "mkdir -p temp/phpstan",
+      "composer require -d temp/phpstan phpstan/phpstan:0.10.3",
+      "composer require -d temp/phpstan phpstan/phpstan-deprecation-rules:0.10.2",
+      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:0.10.1"
+    ],
+    "phpstan": [
+      "temp/phpstan/vendor/bin/phpstan analyse -l max -c phpstan.neon src"
     ]
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-dev": "2.1.x-dev"
+    }
+  }
 }

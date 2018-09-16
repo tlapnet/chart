@@ -1,45 +1,30 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart\Segment;
 
-
-/**
- * @author Ludek Benedik
- */
 class PieSegment
 {
+
 	/** @var string */
 	private $title;
 
 	/** @var float */
 	private $value;
 
-
-	/**
-	 * @param string $title
-	 * @param float $value
-	 */
-	function __construct($title, $value)
+	public function __construct(string $title, float $value)
 	{
-		$this->title = (string) $title;
-		$this->value = (float) $value;
+		$this->title = $title;
+		$this->value = $value;
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function getTitle()
+	public function getTitle(): string
 	{
 		return $this->title;
 	}
 
-
-	/**
-	 * @return float
-	 */
-	public function getValue()
+	public function getValue(): float
 	{
 		return $this->value;
 	}
+
 }

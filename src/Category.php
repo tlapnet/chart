@@ -1,45 +1,30 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Tlapnet\Chart;
 
-
-/**
- * @author Ludek Benedik
- */
 class Category
 {
+
 	/** @var string */
 	private $key;
 
 	/** @var string */
 	private $title;
 
-
-	/**
-	 * @param string $key
-	 * @param string $title
-	 */
-	public function __construct($key, $title)
+	public function __construct(string $key, string $title)
 	{
-		$this->key   = (string) $key;
-		$this->title = (string) $title;
+		$this->key = $key;
+		$this->title = $title;
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function getKey()
+	public function getKey(): string
 	{
 		return $this->key;
 	}
 
-
-	/**
-	 * @return string
-	 */
-	public function getTitle()
+	public function getTitle(): string
 	{
 		return $this->title;
 	}
+
 }
