@@ -41,9 +41,9 @@
     ],
     "phpstan-install": [
       "mkdir -p temp/phpstan",
-      "composer require -d temp/phpstan phpstan/phpstan:0.10.3",
-      "composer require -d temp/phpstan phpstan/phpstan-deprecation-rules:0.10.2",
-      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:0.10.1"
+      "composer require -d temp/phpstan phpstan/phpstan:0.11.12",
+      "composer require -d temp/phpstan phpstan/phpstan-deprecation-rules:0.11.2",
+      "composer require -d temp/phpstan phpstan/phpstan-strict-rules:0.11.1"
     ],
     "phpstan": [
       "temp/phpstan/vendor/bin/phpstan analyse -l max -c phpstan.neon src"
