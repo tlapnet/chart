@@ -15,7 +15,7 @@ Graphs and charts based on [C3.js](http://c3js.org/)
 ## Install
 
 ```
-$ compose require tlapnet/chart
+$ composer require tlapnet/chart
 ```
 
 ## Versions
